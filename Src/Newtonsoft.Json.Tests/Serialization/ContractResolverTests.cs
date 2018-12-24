@@ -47,6 +47,7 @@ using System.Reflection;
 using Newtonsoft.Json.Utilities;
 using System.Globalization;
 using Newtonsoft.Json.Linq;
+using System.Collections;
 
 namespace Newtonsoft.Json.Tests.Serialization
 {
@@ -723,6 +724,17 @@ namespace Newtonsoft.Json.Tests.Serialization
             {
                 return Prop4Specified?.Invoke() ?? false;
             }
+        }
+
+        [Test]
+        public void NonGenericDictionary_KeyValueTypes()
+        {
+            DefaultContractResolver resolver = new DefaultContractResolver();
+
+            JsonDictionaryContract c = (JsonDictionaryContract)resolver.ResolveContract(typeof(IDictionary));
+
+            Assert.IsNull(c.DictionaryKeyType);
+            Assert.IsNull(c.DictionaryValueType);
         }
 
         [Test]
