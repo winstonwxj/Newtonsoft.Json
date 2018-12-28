@@ -698,7 +698,7 @@ namespace Newtonsoft.Json
         {
             if (!JavaScriptUtils.TryGetDateFromConstructorJson(reader, out DateTime dateTime, out string? errorMessage))
             {
-                throw JsonWriterException.Create(this, errorMessage!, null);
+                throw JsonWriterException.Create(this, errorMessage, null);
             }
 
             WriteValue(dateTime);
